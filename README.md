@@ -1,4 +1,4 @@
-# GitHub for Beginners: How to open source your python project
+# GitHub for Beginners: Open source your python project
 
 In this talk, we'll cover how to use git at the command line level to unleash the full power of git as a version control for your codebase. This tutorial assumes you have a basic knowledge of the command line, the git package installed (brew install git; yum install git; apt-get install git), and a desire to learn new things.
 
