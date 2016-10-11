@@ -74,4 +74,4 @@ Most python open source packages have a requirements.txt file at the root of the
  - [Visual Guide To How Git Works](http://marklodato.github.io/visual-git-guide/index-en.html)
  - [Learning Markdown](https://guides.github.com/features/mastering-markdown/)
  - [Forking Existing Projects](https://guides.github.com/activities/forking/)
-
+ - **Advanced** [Uploading Project to PyPi](http://peterdowns.com/posts/first-time-with-pypi.html)
