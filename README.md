@@ -31,9 +31,29 @@ If these terms are still confusing to you, don't worry about it. The best way to
 
 ### 
 
-## Python Virtual Environments
+## Python Virtual Environment
 
+"A Virtual Environment is a tool to keep the dependencies required by different projects in separate places, by creating virtual Python environments for them. It solves the “Project X depends on version 1.x but, Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable. For example, you can work on a project which requires Django 1.3 while also maintaining a project which requires Django 1.0." 
 
+### Installation 
+
+Installing virtualenv for python is as simple as the following few steps:
+
+    pip install virtualenv
+    # cd to your project and create a virtualenv
+    cd /path/to/project
+    virtualenv -p python3 env 
+    source env/bin/activate  # activates the virtualenv within your terminal session
+    pip install pyrva  # install your packages within the virtual environment
+ 
+### requirements.txt file
+
+Most python open source packages have a requirements.txt file at the root of the project directory that denotes the required packages the project requires for runtime. Pip has a convenient way of installing packages from a text file:
+
+    # cd to your project and create a virtualenv
+    cd /path/to/project
+    source env/bin/activate  # ensure you're within your virtual environment
+    pip install -r requirements.txt  # installs packages listed in the requirements.txt file
 
 ## Python Setup Tools
 
