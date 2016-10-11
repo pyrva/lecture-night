@@ -119,6 +119,8 @@ Most python open source packages have a requirements.txt file at the root of the
 ## Python Setup Tools
 
 
+## Pytest
+
 
 ## Putting It All Together
 
