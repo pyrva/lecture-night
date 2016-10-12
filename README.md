@@ -128,18 +128,87 @@ Cool beans.
 
 Let's commit the new ```pyrva.py``` file to our repository. 
 
-``` git commit -m "Implemented pyrva.py"
+```bash
+git commit -m "Implemented pyrva.py"
 ```
 
-Note 
+Note the extra argument -m at the end of commit. The m stands for message. This allows us to create a text record of what the commit did for our project. This makes it easy to review your changes and figure out what commit performed what change to your code.
 
-7. Modify our math module to abstract to infinite arguments
+### 7. Modify our math module to abstract to infinite arguments
 
-8. Save our changes to a commit
+Our current implementation sucks. Let's abstract the addition and subtraction functions so they can handle a variable number of arguments and combine them into a single function called addition. We'll let the users pass in negative numbers if they want to perform subtraction.
 
-9. Commit!
+Here's our new logic
 
-10. Push our local repository to github
+```python
+def add(*args):
+    return sum(args)
+```
+
+And here's how to overwrite our existing code using bash...
+
+```bash
+echo """def add(*args):
+    return sum(args)
+""" > pyrva.py
+```
+
+### 8. Save our changes to a commit
+
+Note the difference now when we check the status of our project (```git status```):
+
+```
+MacBook-Pro-2:github robert$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   pyrva.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+Unlike before where we had an untracked file, now we have "changes not staged for commit". To save those changes, we have to add the files that we changed to our new commit. 
+
+```bash
+git add pyrva.py
+```
+
+### 9. Commit!
+
+Nothing new here...
+
+```bash
+git commit -m "Abstracted add to add and subtract infinite arguments"
+```
+
+Note, we can check and see how many commits our repository has now by checking our git log:
+
+```bash
+commit 4c8bc245fa137abc4ab25004d5429dd00cc5f655
+Author: Robert Lee <lee.robert.138@gmail.com>
+Date:   Wed Oct 12 15:29:48 2016 -0400
+
+    Abstracted add to add and subtract infinite arguments
+
+commit 1c52544327a29ff4eaf95793c25ca6bc781f49f5
+Author: Robert Lee <lee.robert.138@gmail.com>
+Date:   Wed Oct 12 15:19:27 2016 -0400
+
+    initial commit
+```
+
+To exit out of the log, push q to **q**uit. 
+
+### 10. Push our local repository to github
+
+Create a new repository on (GitHub)[http://github.com] by clicking on the + icon on the top right. You'll see something like this:
+
+!()[http://i.imgur.com/N3VT4GI.png]
+
 
 11. Let's create a README on github so we have documentation
 
