@@ -526,9 +526,97 @@ There are many other fields you can pass into the setup function to provide meta
 
 Let's go ahead and add that setup file to our project root directory.
 
+```bash
+echo """from setuptools import setup, find_packages
+
+setup(
+    name='pyrva',
+    version='0.0.1',
+    packages=find_packages(exclude=['tests']),
+    install_requires=['numpy'],  # external libraries
+    tests_require=['pytest'],  # libraries required for testing
+)""" > setup.py
+```
+
+To locally install your package, run the install command on the setup.py file
+
+```bash
+python setup.py install
+```
+
+If we check the packages we have installed in our virtual environment now, we'll see we installed our pyrva package into our environment.
+
+```
+(env)MacBook-Pro-2:github robert$ pip freeze
+numpy==1.11.2
+pyrva==0.0.1
+wheel==0.24.0
+```
+
+Now, let's add the ```setup.py``` and ```requirements.txt``` to a git commit and push them to our github repo. 
+
+Once we have a ```setup.py``` located at the root directory of our github repository, we can use pip to install our package:
+
+```bash
+pip install git+git://github.com/leerobert/pyrva.git
+```
+
+This is only a rudimentary overview of what you can accomplish with a setup.py file. I highly encourage you to read more into the documentation.
+
 ## Pytest
 
+The pytest framework makes it easy to write small tests, yet scales to support complex functional testing for packages. We're going to write a simple test to ensure that our addition function does exactly as described.
 
+First, let's install the pytest framework. We can do that using pip
+
+```bash
+pip install pytest
+```
+
+Next, let's create a folder that will contain our tests. 
+
+```bash
+mkdir tests
+```
+
+We won't have a __init__.py file here as pytest doesn't consider the tests folder to be a package within itself. It merely uses the tests folder name to self discover tests.
+
+Next, let's create a module to test the addition function within our pyrva module. 
+
+```bash
+touch test_addition.py
+```
+
+Now let's add some test code to that file. Here is the logic that will test our addition function:
+
+```python
+from pyrva import addition
+
+def test_addition():
+    assert addition(1,2) == 3
+```
+
+To run the test, we simple run the command ```pytest tests``` which tell pytest to discover test modules within the tests folder.
+
+```bash
+(env)MacBook-Pro-2:github robert$ pytest tests/
+======================================= test session starts ========================================
+platform darwin -- Python 3.4.3, pytest-3.0.3, py-1.4.31, pluggy-0.4.0
+rootdir: /Users/robert/Projects/pyrva/github, inifile: 
+collected 1 items 
+
+tests/test_add.py .
+
+===================================== 1 passed in 0.01 seconds =====================================
+```
+
+By default, pytest discovers modules that have a leading ```test_``` in their file name and runs all functions that have a leading ```test_```. 
+
+I'd also highly suggest reading up on pytest fixtures for building constants accross your tests.
+
+## Final Notes
+
+There are so many tools at your disposal to help you manage your open source project. I listed some additional resources below if you wish to read more on other topics.
 
 ## Additional Resources
 
