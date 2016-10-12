@@ -58,11 +58,80 @@ Easy eh?
 
 ### 3. Implement our add and subtract functions
 
-4. Check the status of our repository
+Create a file named pyrva.py within your working directory. You can do this directly in your terminal by running the command ```touch pyrva.py```. We're going to implement our complicated math functions as follows:
 
-5. Add the math module to a commit
+```python
+def add(x, y):
+    return x + y
 
-6. Commit!
+def subtract(x, y):
+    return x - y
+```
+
+In fact, instead of opening up a text editor, we can write our code into pyrva.py using bash!
+
+```bash
+echo """def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y""" > pyrva.py
+```
+
+Once you go bash, you never go back.
+
+### 4. Check the status of our repository
+
+Let's see if git notices that we created a new file in the directory. Probably the most type git command is ```git status```. ```git status``` gives you information about the current state of your project. It informs you on new files created, changes between current files and the last commit, and other pertinent information we won't delve into at the moment.
+
+Go ahead and try ```git status```. You'll see something like the following:
+
+```
+MacBook-Pro-2:github robert$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	pyrva.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+Under untracked files, you see our newly created file ```pyrva.py```. In git speak, untracked files refer to files that are newly created in the workspace. git has no prior record of that file and therefore is not currently tracking its changes.
+
+### 5. Add pyrva to a commit
+
+To have git keep track of our changes to ```pyrva.py```, we have to commit the file to our local repository so it can keep track of the file going forward. To add the file to a commit, yup you guessed it, we need to run the command ```git add``` and list the file names we wish to add. 
+
+```bash
+git add pyrva.py
+```
+
+Note you can add as many files as you want to a commit. Commits are not limited to just one new file or one line changes. We'll explore that a little further down.
+
+Try running ```git status``` now and note the difference:
+
+```
+MacBook-Pro-2:github robert$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   pyrva.py
+```
+
+Cool beans.
+
+### 6. Commit!
+
+Let's commit the new ```pyrva.py``` file to our repository. 
+
+``` git commit -m "Implemented pyrva.py"
+```
+
+Note 
 
 7. Modify our math module to abstract to infinite arguments
 
@@ -115,6 +184,15 @@ Most python open source packages have a requirements.txt file at the root of the
     cd /path/to/project
     source env/bin/activate  # ensure you're within your virtual environment
     pip install -r requirements.txt  # installs packages listed in the requirements.txt file
+
+A current list of installed packages your project currently has in its virtual environment can be viewed by running
+
+    pip freeze
+    
+An up to date ```requirements.txt``` file can be obtained by running at your project directory level
+
+    pip freeze > requirements.txt 
+
 
 ## Python Setup Tools
 
