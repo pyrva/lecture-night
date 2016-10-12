@@ -207,28 +207,42 @@ To exit out of the log, push q to **q**uit.
 
 Create a new repository on (GitHub)[http://github.com] by clicking on the + icon on the top right. You'll see something like this:
 
-!()[http://i.imgur.com/N3VT4GI.png]
+![Create Repository](http://i.imgur.com/N3VT4GI.png)
+
+You'll see a few options to help you get started. The commands we care about are here
+
+![Origin](http://i.imgur.com/ZYmISEJ.png)
+
+Go ahead and run the commands GitHub provides within your terminal... don't run my commands below! It's my repository.
+
+```bash
+git remote add origin https://github.com/leerobert/pyrva.git
+git push -u origin master
+```
+
+Ok cool. You should your code now uploaded to your remote repository on GitHub. Let's briefly talk about the git commands we just ran...
+
+To control the remote repositories that you want to share your local repository with, you'll interface with ```git remote```. To view all the remote repositories your local repo talks to, you can view them by running ```git remote -v```. I added a remote repository that I named origin and located at https://github.com/leerobert/pyrva.git. You similarly added a remote repository named origin at the link GitHub made for you. 
+
+To talk to our remote repositories, we push (upload) our local code and pull (download) remote code. Here, since all our code was local, we pushed our two commits to origin (our remote github repo) to the branch master. We won't be covering branches so don't worry about the master component for now.
+
+### 11. Editing Code on Github
 
 
-11. Let's create a README on github so we have documentation
 
-12. Module vs. Package
+### 12. 
 
-13. Create the add module
+13. Save our changes to a commit 
 
-14. Create the subtract module
+14. Push our commit to github
 
-15. Save our changes to a commit 
+15. Wait what happened?? Merge???
 
-16. Push our commit to github
+16. Pulling 
 
-17. Wait what happened?? Merge???
+17. Merging conflicts
 
-18. Pulling 
-
-19. Merging conflicts
-
-20. Push 
+18. Push 
 
 ## Python Virtual Environment
 
