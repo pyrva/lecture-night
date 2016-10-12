@@ -463,40 +463,50 @@ Now when we import pyrva in a python interpreter, we see both the module and the
 
 ## Python Virtual Environment
 
+We want to add an outside library named ```numpy``` to compute adds for matrices. Before we include numpy, let's first cover what a virtual environment is.
+
 "A Virtual Environment is a tool to keep the dependencies required by different projects in separate places, by creating virtual Python environments for them. It solves the “Project X depends on version 1.x but, Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable. For example, you can work on a project which requires Django 1.3 while also maintaining a project which requires Django 1.0." 
 
-### Installation 
-
-Installing virtualenv for python is as simple as the following few steps:
+Installing virtualenv for python is simple:
 
 ```bash
 pip install virtualenv
-virtualenv -p python3 env 
-source env/bin/activate  # activates the virtualenv within your terminal session
  ```
  
-### requirements.txt file
+Once virtualenv is installed, we can create a virtualenv within our project. We're going to create a folder called env that contains all of our environment code for any of the packages we install.
+ 
+ ```bash
+virtualenv -p python3 env 
+source env/bin/activate  # activates the virtualenv within your terminal session
+```
 
-Most python open source packages have a requirements.txt file at the root of the project directory that denotes the required packages the project requires for runtime. Pip has a convenient way of installing packages from a text file:
+Now, when we install numpy using pip, we'll install numpy locally into our environment folder. Note, numpy takes a while to install...
 
-    # cd to your project and create a virtualenv
-    cd /path/to/project
-    source env/bin/activate  # ensure you're within your virtual environment
-    pip install -r requirements.txt  # installs packages listed in the requirements.txt file
+```bash
+pip install numpy
+```
 
-A current list of installed packages your project currently has in its virtual environment can be viewed by running
+Most python open source packages have a requirements.txt file at the root of the project directory that denotes the required packages the project requires for runtime. Pip has a convenient way of installing packages from a text file.
 
-    pip freeze
-    
-An up to date ```requirements.txt``` file can be obtained by running at your project directory level
+To build our requirements.txt file, run the following:
 
-    pip freeze > requirements.txt 
+```bash
+pip freeze > requirements.txt
+```
 
+Viewing the requirements.txt file will show the following packages installed within your environment
+
+```
+(env)MacBook-Pro-2:github robert$ cat requirements.txt 
+numpy==1.11.2
+wheel==0.24.0
+```
+
+To exit from your virtualenv, simply run the ```deactivate``` command. Don't forget to source the activate file when you open a new terminal to enter the environment.
 
 ## Python Setup Tools
 
 Every project that you want to package needs a setup.py file that is executed whenever you build a distribution and on each installation. The setup.py file contains all the metadata relevant to your project (author name & email, repo url, languages supported, README, CHANGES, etc.) however only a very basic set of variables are needed to properly set up a package that can be installed.
-
 
 Here's an example of a basic ``setup.py`` file:
 
@@ -507,7 +517,7 @@ setup(
     name='pyrva',
     version='0.0.1',
     packages=find_packages(exclude=['tests']),
-    install_requires=['Flask', 'sympy'],  # external libraries
+    install_requires=['numpy'],  # external libraries
     tests_require=['pytest'],  # libraries required for testing
 )
 ```
