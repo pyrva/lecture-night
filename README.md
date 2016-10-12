@@ -228,21 +228,68 @@ To talk to our remote repositories, we push (upload) our local code and pull (do
 
 ### 11. Editing Code on Github
 
+By clicking into ```pyrva.py``` and then clicking on the pencil on the far right toolbar above the source code, we can edit our source code within GitHub.
 
+Let's add our author name to the top of the ```pyrva.py```.
 
-### 12. 
+![Adding Author](http://i.imgur.com/pIzaPqe.png)
 
-13. Save our changes to a commit 
+Once you've finished, scroll to the bottom. Notice that changes, even on the remote repo, require commits. Every change is always track by a commit. Add a commit message and save the commit.
 
-14. Push our commit to github
+![Commiting Author Change](http://i.imgur.com/olzaX7b.png)
 
-15. Wait what happened?? Merge???
+### 12. Creating a README.md
 
-16. Pulling 
+The nice document you're reading right now is called a README document. README documents by default are parsed by GitHub and placed below the package directory on the main page of your GitHub project. The README document helps other developers understand what your project does, how to install it, and basic usage. 
 
-17. Merging conflicts
+This README document is written using a language called Markdown. It's actually quite easy to learn and formats your text in an aesthetically pleasing way. Check the additional resources below to learn more about markdown syntax. 
 
-18. Push 
+Ok enough playing on GitHub. Let's go back to our terminal. Be sure you're still in your project directory. Create our README.md doc with the following content:
+
+```bash
+echo """# pyrva
+Super complicated addition function""" > README.md
+```
+
+### 13. Save our changes to a commit 
+
+You know the drill.
+
+```bash
+git add README.md
+git commit -m "Added a sweet README in markdown"
+```
+
+### 14. Push our commit to github
+
+Now push that commit to github...
+
+```bash
+git push origin master
+```
+
+### 15. Wait what happened?? Merge???
+
+What???
+
+```bash
+MacBook-Pro-2:github robert$ git push origin master
+Username for 'https://github.com': leerobert
+Password for 'https://leerobert@github.com': 
+To https://github.com/leerobert/pyrva.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/leerobert/pyrva.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+### 16. Pulling And Merging Conflicts
+
+### 17. Push Merge And Voila
+
 
 ## Python Virtual Environment
 
