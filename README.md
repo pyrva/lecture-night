@@ -379,10 +379,28 @@ def add(*args):
 
 Between ```=======``` and ```>>>>>>> <hex>``` are the remote changes we made when we included the author information. The large hex number that follows the arrows is the unique identifier for the commit we made on github. 
 
+Lets go ahead and resolve the conflict by incorporating both changes together
 
+```bash
+echo '''"""
+Author: Robert Lee
+"""
+
+def addition(*args):
+    return sum(args)''' > pyrva.py
+```
 
 ### 17. Push Merge And Voila
 
+To resolve a manual merge, we follow a pretty predictable flow. First add the merged file then commit the merge changes. Lastly push the changes up to our remote repo.
+
+```bash
+git add pyrva.py
+git commit -m "manually merged pyrva"
+git push origin master
+```
+
+Break time...
 
 ## Python Virtual Environment
 
