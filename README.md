@@ -402,6 +402,65 @@ git push origin master
 
 Break time...
 
+# PYRVA OPEN SOURCED
+
+For this next section, we're going to run through common structure and tools that are often employed in python open sourced projects. In the process, we're going to incorporate all these techniques into our pyrva project.
+
+## Organizing Source Code
+
+Python code is written in files we like to call **modules**. ```pyrva.py``` is a module that contains the function addition. A Python module is simply a python source file, which can expose classes, functions and global variables. When imported from another Python source file, the file name is treated as a namespace.
+
+A python package is simply a collection of python module(s). 
+
+We're going to refactor our ```pyrva``` module so that it sits inside a ```pyrva``` package. Now, on the surface this might sound confusing. Why are we creating a package with the name ```pyrva``` to contain the ```pyrva``` module? Isn't this redundant? 
+
+In our case, perhaps. But imagine if we wanted to add another module that contained completely different functions in form yet we wanted to retain the pyrva namespace. In order to retain the pyrva namespace but have multiple modules, we'll have to organize the different modules under the same package. Enough talking and more doing.
+
+Go ahead and create the python package. This is simple a directory that contains an ```__init__.py``` file. The ```__init__.py``` file within a folder is python's way of signalling: "Hey, everything in this folder ending in ```*.py``` is a module for the package. It differentiates the package folder from a normal folder. The ```__init__.py``` file also has other functionalities we'll touch on in a second.
+
+```bash
+mkdir pyrva  # our package folder
+touch pyrva/__init__.py  # let python know this is a package
+```
+
+Now let's move the pyrva module into the pyrva package.
+
+```bash
+mv pyrva.py pyrva/
+```
+
+Now, if we open up our python interpreter and import our pyrva package, we'll find it successfully imports.
+
+```python
+>>> import pyrva
+>>> dir(pyrva)
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__']
+```
+
+Yet we're still missing our addition function. It doesn't show up in the list of functions within the pyrva package. To get to the addition function, we have to import the module pyrva that contains the addition function.
+
+```python
+>>> import pyrva.pyrva
+>>> dir(pyrva.pyrva)
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'addition']
+>>> pyrva.pyrva.addition(1,2)
+3
+```
+
+How can we fix this so we only have to import pyrva to get access to the addition function? This is where the ```__init__.py``` comes into handy. We're going to import from the module pyrva the addition function within the ```__init__.py``` file. Any time python loads your package, it executes the globals within the ```__init__.py``` file. This allows us to import important functions from our modules into our top level namespace.
+
+```bash
+echo """from pyrva.pyrva import addition""" > pyrva/__init__.py
+```
+
+Now when we import pyrva in a python interpreter, we see both the module and the function addition have been included
+
+```python
+>>> import pyrva
+>>> dir(pyrva)
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', 'addition', 'pyrva']
+```
+
 ## Python Virtual Environment
 
 "A Virtual Environment is a tool to keep the dependencies required by different projects in separate places, by creating virtual Python environments for them. It solves the “Project X depends on version 1.x but, Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable. For example, you can work on a project which requires Django 1.3 while also maintaining a project which requires Django 1.0." 
@@ -410,12 +469,11 @@ Break time...
 
 Installing virtualenv for python is as simple as the following few steps:
 
-    pip install virtualenv
-    # cd to your project and create a virtualenv
-    cd /path/to/project
-    virtualenv -p python3 env 
-    source env/bin/activate  # activates the virtualenv within your terminal session
-    pip install pyrva  # install your packages within the virtual environment
+```bash
+pip install virtualenv
+virtualenv -p python3 env 
+source env/bin/activate  # activates the virtualenv within your terminal session
+ ```
  
 ### requirements.txt file
 
@@ -437,15 +495,30 @@ An up to date ```requirements.txt``` file can be obtained by running at your pro
 
 ## Python Setup Tools
 
+Every project that you want to package needs a setup.py file that is executed whenever you build a distribution and on each installation. The setup.py file contains all the metadata relevant to your project (author name & email, repo url, languages supported, README, CHANGES, etc.) however only a very basic set of variables are needed to properly set up a package that can be installed.
+
+
+Here's an example of a basic ``setup.py`` file:
+
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name='pyrva',
+    version='0.0.1',
+    packages=find_packages(exclude=['tests']),
+    install_requires=['Flask', 'sympy'],  # external libraries
+    tests_require=['pytest'],  # libraries required for testing
+)
+```
+
+There are many other fields you can pass into the setup function to provide metadata surrounding the nature of your package. For example, ```author```, ```author_email```, ```description```, and many more. 
+
+Let's go ahead and add that setup file to our project root directory.
 
 ## Pytest
 
 
-## Putting It All Together
-
-We're going to modify our pyrva-math module to include some more advanced functionality not already support by native python functions. In doing so, we'll include a python package called numpy to demonstrate using external libraries in an open source project. 
-
-1. 
 
 ## Additional Resources
 
