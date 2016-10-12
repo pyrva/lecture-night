@@ -149,8 +149,7 @@ And here's how to overwrite our existing code using bash...
 
 ```bash
 echo """def add(*args):
-    return sum(args)
-""" > pyrva.py
+    return sum(args)""" > pyrva.py
 ```
 
 ### 8. Save our changes to a commit
@@ -260,6 +259,20 @@ git add README.md
 git commit -m "Added a sweet README in markdown"
 ```
 
+Also while we're at it, let's get rid of the extraneous return line at the bottom of ```pyrva.py``` and rename our function to addition cause I feel like it. 
+
+```bash
+echo """def addition(*args):
+    return sum(args)""" > pyrva.py
+```
+
+You know the drill (again).
+
+```bash
+git add pyrva.py
+git commit -m "add renamed to addition and cleaned return lines"
+```
+
 ### 14. Push our commit to github
 
 Now push that commit to github...
@@ -286,7 +299,87 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
+What just happened is a very common occurence when working with local and remote repositories. Some of you might have already figured out why this error was thrown. 
+
+We modified the source of ```pyrva.py``` on our remote repository to include author name at the top of the file. We then locally modified ```pyrva.py``` to rename the function from add to addition. We're trying to push a commit from our local repository to the remote repository without taking in account the current, most up to date commit of the remote repository. This is a common occurrence in distributed programming. Resolving these conflicts is called **merging**.
+
 ### 16. Pulling And Merging Conflicts
+
+As the hint suggests in our push message, let's go ahead and pull the latest commits from the remote repository.
+
+```bash
+MacBook-Pro-2:github robert$ git pull
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/leerobert/pyrva
+   8dd79d7..baf23a0  master     -> origin/master
+Auto-merging pyrva.py
+CONFLICT (content): Merge conflict in pyrva.py
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Here, we see git tries to resolve the conflicts between our local commit of modifying the function name and our remote commit of adding in author information. However, the automatic merging fails. 
+
+If we check out our local git repository status, we find out exactly what files need to be manually merged:
+
+```
+MacBook-Pro-2:github robert$ git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commit each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	both modified:   pyrva.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+If we take a look inside ```pyrva.py```, git tells us exactly where merges are needed.
+
+```bash
+MacBook-Pro-2:github robert$ cat pyrva.py 
+<<<<<<< HEAD
+def addition(*args):
+=======
+"""
+author
+"""
+
+def add(*args):
+>>>>>>> baf23a09e13d8107c74dc73db4249eabf2ff6611
+    return sum(args)
+```
+
+We now get a glimpse of why git wasn't able to automatically merge our differing commits. 
+
+```
+<<<<<<< HEAD
+def addition(*args):
+=======
+```
+
+Between ```HEAD``` and ```=======``` are our local changes to ```pyrva.py```
+
+```
+=======
+"""
+author
+"""
+
+def add(*args):
+>>>>>>> baf23a09e13d8107c74dc73db4249eabf2ff6611
+```
+
+Between ```=======``` and ```>>>>>>> <hex>``` are the remote changes we made when we included the author information. The large hex number that follows the arrows is the unique identifier for the commit we made on github. 
+
+
 
 ### 17. Push Merge And Voila
 
