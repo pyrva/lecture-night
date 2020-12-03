@@ -1,6 +1,8 @@
 Python for Quick, Useful Multimedia Manipulation: Anecdotes from a Python Programmer
 =====================================================================================
 
+**Presented: 2020-07-08**
+
 One of Python's many killer features is that a programmer can create snippets of code, and organically and coherently join them into larger collections of module code. In this presentation, I describe and demonstrate relatively simple Python tools -- for image, video, and audio manipulation -- that I use every day at work and outside work.
 
 * automatically cropping out whitespace in images (surprisingly easy to do).
