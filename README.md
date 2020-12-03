@@ -11,7 +11,7 @@ is scheduled. **Due to current events, we are hosting virtual meetings on
 # Lecture Night History
 
 Date | Topic | Presenter | Link
----|---|---
+---|---|---|---
 2020-11-11 | Document Your Python Projects with Sphinx | [Tanim Islam](https://github.com/tanimislam) |
 2020-09-09 | Rapid data analysis with SQLite and Datasette | [Simon Willison](https://github.com/simonw) |
 2020-07-08 | Useful Multimedia Manipulation | [Tanim Islam](https://github.com/tanimislam) | [In This Repo](https://github.com/pyrva/lecture-night/tree/main/lectures/useful-multimedia-manipulation)
