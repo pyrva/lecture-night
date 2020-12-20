@@ -19,6 +19,6 @@ Date | Topic | Presenter | Link
 2020-05-13 | Logging in Python | [Mike Driscoll](https://github.com/driscollis) |
 2020-04-08 | Debugging in Python | [Chris May](https://github.com/Chris-May) |
 2020-03-11 | Choosing the Best Python Web Framework | [Chris May](https://github.com/Chris-May) |
-2020-02-12 | Web Scraping in Python | Sam Portillo and [Brian Cohan](https://github.com/briancohan) |
+2020-02-12 | Web Scraping in Python | [Sam Portillo](https://github.com/portillosc) and [Brian Cohan](https://github.com/briancohan) | [briancohan/webscraping](https://github.com/briancohan/webscraping)
 2020-01-08 | CI/CD for Python on AWS | Viji Natarajan |
 2016-10-12 | GitHub for Beginners | [Lee Robert](https://github.com/leerobert) | [In This Repo](https://github.com/pyrva/lecture-night/tree/main/lectures/github-for-beginners)
