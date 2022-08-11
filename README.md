@@ -12,6 +12,8 @@ is scheduled. **Due to current events, we are hosting virtual meetings on
 
 Date | Topic | Presenter | Link
 ---|---|---|---
+2022-08-10 | Level Up Through Refactoring | [Chris May](https://github.com/Chris-May) | TBD |
+2022-04-13 | Tools To Help Your Python Project|[Chris May](https://github.com/Chris-May) | | 
 2020-11-11 | Document Your Python Projects with Sphinx | [Tanim Islam](https://github.com/tanimislam) |
 2020-09-09 | Rapid data analysis with SQLite and Datasette | [Simon Willison](https://github.com/simonw) |
 2020-07-08 | Useful Multimedia Manipulation | [Tanim Islam](https://github.com/tanimislam) | [In This Repo](https://github.com/pyrva/lecture-night/tree/main/lectures/useful-multimedia-manipulation)
